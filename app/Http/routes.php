@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ExampleController@index');
+Route::get('/example', 'ExampleController@example');
+Route::get('/admin/categories', 'AdminCategoriesController@index');
+Route::get('/admin/products', 'AdminProductsController@index');
