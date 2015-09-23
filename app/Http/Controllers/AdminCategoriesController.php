@@ -25,4 +25,34 @@ class AdminCategoriesController extends Controller
 
         return view('categories', compact('categories'));
     }
+
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function insert()
+    {
+
+    }
+
+    /**
+     * Update category.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     */
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    /**
+     * Delete category.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     */
+    public function delete(Request $request, $id)
+    {
+
+    }
 }

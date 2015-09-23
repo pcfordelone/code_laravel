@@ -25,4 +25,34 @@ class AdminProductsController extends Controller
 
         return view('products', compact('products'));
     }
+
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function insert($id)
+    {
+
+    }
+
+    /**
+     * Update product.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     */
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    /**
+     * Delete product.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     */
+    public function delete(Request $request, $id)
+    {
+
+    }
 }
