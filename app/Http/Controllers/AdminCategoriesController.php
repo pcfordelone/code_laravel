@@ -4,55 +4,60 @@ namespace FRD\Http\Controllers;
 
 use FRD\Category;
 use Illuminate\Http\Request;
-use FRD\Http\Requests;
+use FRD\Http\Requests\CategoryRequest as CategoryRequest;
 use FRD\Http\Controllers\Controller;
 
 class AdminCategoriesController extends Controller
 {
-    private $categories;
+    private $category;
 
     public function __construct(Category $category)
     {
-        $this->categories = $category;
+        $this->category = $category;
     }
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $categories = $this->categories->all();
+        $categories = $this->category->all();
 
-        return view('categories', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    public function insert()
+    public function create()
     {
-
+        return view('admin.categories.create');
     }
 
-    /**
-     * Update category.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     */
+    public function store(CategoryRequest $request)
+    {
+        $input = $request->all();
+        $category = $this->category->fill($input);
+        $category->save();
+
+        return redirect()->route('categories.index');
+    }
+
+    public function edit($id)
+    {
+        $category = $this->category->findOrNew($id);
+
+        return view('admin.categories.edit', compact('category'));
+    }
+
     public function update(Request $request, $id)
     {
+        $this->category->findOrNew($id)->update($request->all());
 
+        return redirect()->route('categories.index');
     }
 
     /**
-     * Delete category.
-     *
-     * @param  Request  $request
-     * @param  int  $id
+     * Destroy category.
      */
-    public function delete(Request $request, $id)
+    public function destroy($id)
     {
+        $this->category->findOrNew($id)->delete();
 
+        return redirect()->route('categories.index');
     }
 }

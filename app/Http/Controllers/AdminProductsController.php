@@ -5,6 +5,7 @@ namespace FRD\Http\Controllers;
 use FRD\Product;
 use Illuminate\Http\Request;
 use FRD\Http\Requests;
+use FRD\Http\Requests\ProductRequest;
 use FRD\Http\Controllers\Controller;
 
 class AdminProductsController extends Controller
@@ -16,43 +17,47 @@ class AdminProductsController extends Controller
         $this->products = $product;
     }
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $products = $this->products->all();
 
-        return view('products', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    public function insert($id)
+    public function create()
     {
-
+        return view('admin.products.create');
     }
 
-    /**
-     * Update product.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     */
+    public function store(ProductRequest $request)
+    {
+        $input = $request->all();
+        print_r($input);
+
+        $product = $this->products->fill($input);
+        $product->save();
+
+        return redirect()->route('products.index');
+    }
+
+    public function edit($id)
+    {
+        $product = $this->products->findOrNew($id);
+
+        return view('admin.products.edit', compact('product'));
+    }
+
     public function update(Request $request, $id)
     {
+        $this->products->findOrNew($id)->update($request->all());
 
+        return redirect()->route('products.index');
     }
 
-    /**
-     * Delete product.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     */
-    public function delete(Request $request, $id)
+    public function destroy($id)
     {
+        $this->products->findOrNew($id)->delete();
 
+        return redirect()->route('products.index');
     }
 }
