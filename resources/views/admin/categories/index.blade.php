@@ -13,6 +13,8 @@
 
     <br/><br/>
 
+    {!! $categories->render() !!}
+
     <table class="table">
         <tr>
             <th>ID</th>

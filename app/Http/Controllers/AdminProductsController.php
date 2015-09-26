@@ -2,6 +2,7 @@
 
 namespace FRD\Http\Controllers;
 
+use FRD\Category;
 use FRD\Product;
 use Illuminate\Http\Request;
 use FRD\Http\Requests;
@@ -19,14 +20,16 @@ class AdminProductsController extends Controller
 
     public function index()
     {
-        $products = $this->products->all();
+        $products = $this->products->paginate(5);
 
         return view('admin.products.index', compact('products'));
     }
 
-    public function create()
+    public function create(Category $category)
     {
-        return view('admin.products.create');
+        $categories = $category->lists('name','id');
+
+        return view('admin.products.create', compact('categories'));
     }
 
     public function store(ProductRequest $request)
@@ -40,11 +43,12 @@ class AdminProductsController extends Controller
         return redirect()->route('products.index');
     }
 
-    public function edit($id)
+    public function edit($id, Category $category)
     {
         $product = $this->products->findOrNew($id);
+        $categories = $category->lists('name','id');
 
-        return view('admin.products.edit', compact('product'));
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     public function update(ProductRequest $request, $id)

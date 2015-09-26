@@ -14,12 +14,15 @@
 
     <br/><br/>
 
+    {!! $products->render() !!}
+
     <table class="table">
 
         <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Descrição</th>
+            <th>Categoria</th>
+            <th class="col-md-6">Descrição</th>
             <th>Valor</th>
             <th>Ação</th>
         </tr>
@@ -28,6 +31,7 @@
             <tr>
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
+                <td>{{ $product->category->name }}</td>
                 <td>{{ $product->description }}</td>
                 <td>R$ {{ $product->price }}</td>
                 <td>
