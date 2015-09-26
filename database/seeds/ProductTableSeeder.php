@@ -18,7 +18,9 @@ class ProductTableSeeder extends Seeder
             Product::create([
                 'name' => $faker->word,
                 'description' => $faker->sentence(10),
-                'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 3000)
+                'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 3000),
+                'featured' => $faker->boolean($chanceOfGettingTrue = 50),
+                'recommend' => $faker->boolean($chanceOfGettingTrue = 50),
             ]);
         }
     }
