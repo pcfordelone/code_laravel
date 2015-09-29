@@ -10,6 +10,7 @@
             @endforeach
         </ul>
     @endif
+
     {!! Form::open() !!}
 
     <!-- Nome Form Input -->
@@ -34,11 +35,11 @@
     <div class="form-group">
         <div class="col-sm-2">
             {!! Form::label('featured', 'Destaque:') !!}
-            {!! Form::checkbox('featured', '1', false) !!}
+            {!! Form::checkbox('featured', 1, false) !!}
         </div>
         <div class="col-sm-2">
             {!! Form::label('recommend', 'Recomendado:') !!}
-            {!! Form::checkbox('recommend', '1', false) !!}
+            {!! Form::checkbox('recommend', 1, false) !!}
         </div>
         <div class="clearfix"></div>
     </div>

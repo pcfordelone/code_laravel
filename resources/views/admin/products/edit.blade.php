@@ -35,11 +35,11 @@
     <div class="form-group">
         <div class="col-sm-2">
             {!! Form::label('featured', 'Destaque:') !!}
-            {!! Form::checkbox('featured', '1', $product->featured) !!}
+            {!! Form::checkbox('featured', 1, $product->featured) !!}
         </div>
         <div class="col-sm-2">
             {!! Form::label('recommend', 'Recomendado:') !!}
-            {!! Form::checkbox('recommend', '1', $product->recommend) !!}
+            {!! Form::checkbox('recommend', 1, $product->recommend) !!}
         </div>
         <div class="clearfix"></div>
     </div>

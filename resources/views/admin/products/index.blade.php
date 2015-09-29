@@ -22,8 +22,10 @@
             <th>ID</th>
             <th>Nome</th>
             <th>Categoria</th>
-            <th class="col-md-6">Descrição</th>
+            <th class="col-md-4">Descrição</th>
             <th>Valor</th>
+            <th>Destaque</th>
+            <th>Recomendado</th>
             <th>Ação</th>
         </tr>
 
@@ -34,6 +36,20 @@
                 <td>{{ $product->category->name }}</td>
                 <td>{{ $product->description }}</td>
                 <td>R$ {{ $product->price }}</td>
+                <td>
+                    @if($product->featured == 1)
+                        Sim
+                    @else
+                        Não
+                    @endif
+                </td>
+                <td>
+                    @if($product->recommend == 1)
+                        Sim
+                    @else
+                        Não
+                    @endif
+                </td>
                 <td>
                     <a href="{{ route('product.edit', ['id' => $product->id]) }}">
                         <button class="btn btn-primary btn-sm">

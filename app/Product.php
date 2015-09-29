@@ -15,6 +15,11 @@ class Product extends Model
         'recommend'
     ];
 
+    public function images()
+    {
+        return $this->hasMany('FRD\ProductImage');
+    }
+
     public function category()
     {
         return $this->belongsTo('FRD\Category');
