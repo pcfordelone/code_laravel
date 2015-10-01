@@ -11,6 +11,11 @@
             Cadastrar nova imagem
         </button>
     </a>
+    <a href="{{ route('products.index') }}" >
+        <button class="btn btn-info">
+            Voltar
+        </button>
+    </a>
 
     <br/><br/>
 

@@ -56,6 +56,11 @@
                             Editar
                         </button>
                     </a>
+                    <a href="{{ route('products.images', ['id' => $product->id]) }}">
+                        <button class="btn btn-info btn-sm">
+                            Imagens
+                        </button>
+                    </a>
                     <a href="{{ route('product.destroy', ['id' => $product->id]) }}">
                         <button class="btn btn-danger btn-sm">
                             Excluir
