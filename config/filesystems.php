@@ -69,8 +69,8 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => env('AWSAccessKeyId', 'localhost'),
-            'secret'    => env('AWSSecretKey', 'localhost'),
+            'key'    => 'AKIAIVHBH7JUY5PCBGFA',
+            'secret' => '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',
             'region' => 'sa-east-1',
             'bucket' => 'frdcommerce',
         ],
