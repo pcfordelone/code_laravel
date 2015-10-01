@@ -72,8 +72,19 @@ class AdminProductsController extends Controller
 
     public function destroy($id)
     {
-        $this->products->findOrNew($id)->delete();
+        $product = $this->products->findOrNew($id);
+        $images = $product->images;
 
+        if (!is_null($images)) {
+            foreach($images as $image) {
+                if (Storage::disk('s3')->exists($image->id . '.' . $image->extension)) {
+                    Storage::disk('s3')->delete($image->id . '.' . $image->extension);
+                }
+            }
+        }
+
+        $this->products->findOrNew($id)->delete();
+        
         return redirect()->route('products.index');
     }
 
@@ -108,8 +119,9 @@ class AdminProductsController extends Controller
     {
         $image = $productImage->findOrNew($id);
 
-        if (file_exists(public_path() . '/uploads' . $image->id . '.' . $image->extension))
-        Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
+        if (Storage::disk('s3')->exists($image->id . '.' . $image->extension)) {
+            Storage::disk('s3')->delete($image->id . '.' . $image->extension);
+        }
 
         $product = $image->product;
         $image->delete();
