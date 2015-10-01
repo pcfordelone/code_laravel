@@ -27,7 +27,7 @@
             <tr>
                 <td>{{ $image->id }}</td>
                 <td>
-                    <img width="120px" src="{{ url('uploads/' . $image->id . '.' . $image->extension) }}">
+                    <img width="120px" src="{{ url('https://s3-sa-east-1.amazonaws.com/frdcommerce/' . $image->id . '.' . $image->extension) }}">
                 </td>
                 <td>{{ $image->extension }}</td>
 

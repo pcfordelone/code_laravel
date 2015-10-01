@@ -69,10 +69,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key'    => env('AWSAccessKeyId', 'localhost'),
+            'secret'    => env('AWSSecretKey', 'localhost'),
+            'region' => 'sa-east-1',
+            'bucket' => 'frdcommerce',
         ],
 
         'rackspace' => [

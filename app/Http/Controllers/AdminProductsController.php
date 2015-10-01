@@ -98,7 +98,8 @@ class AdminProductsController extends Controller
 
         $image = $productImage::create(['product_id'=>$id, 'extension'=>$extension]);
 
-        Storage::disk('public_local')->put($image->id . '.' . $extension, File::get($file));
+//        Storage::disk('public_local')->put($image->id . '.' . $extension, File::get($file));
+        Storage::disk('s3')->put($image->id . '.' . $extension, File::get($file));
 
         return redirect()->route('products.images',['id'=>$id]);
     }
