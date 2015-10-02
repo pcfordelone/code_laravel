@@ -24,4 +24,9 @@ class Product extends Model
     {
         return $this->belongsTo('FRD\Category');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('FRD\Tag');
+    }
 }

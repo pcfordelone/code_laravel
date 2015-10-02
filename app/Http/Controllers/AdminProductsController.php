@@ -84,7 +84,7 @@ class AdminProductsController extends Controller
         }
 
         $this->products->findOrNew($id)->delete();
-        
+
         return redirect()->route('products.index');
     }
 
