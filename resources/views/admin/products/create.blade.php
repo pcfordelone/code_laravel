@@ -44,6 +44,15 @@
         <div class="clearfix"></div>
     </div>
 
+    <!-- Tags Form Input -->
+    <div class="form-group">
+        {!! Form::label('tags', 'Tags:') !!}
+        {!! Form::textarea('tags', null, [
+            'class'=>'form-control',
+            'placeholder'=>'Insira as tags separadas por vírgula. Ex.: tag01, tag02, etc',
+        ]) !!}
+    </div>
+
     <!-- Description Form Input -->
     <div class="form-group">
         {!! Form::label('description', 'Descrição:') !!}

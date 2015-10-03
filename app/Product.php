@@ -29,4 +29,11 @@ class Product extends Model
     {
         return $this->belongsToMany('FRD\Tag');
     }
+
+    public function getTagListAttribute()
+    {
+        $tags = $this->tags->lists('name')->toArray();
+
+        return implode(',', $tags);
+    }
 }

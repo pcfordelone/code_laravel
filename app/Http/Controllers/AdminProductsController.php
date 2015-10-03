@@ -5,6 +5,7 @@ namespace FRD\Http\Controllers;
 use FRD\Category;
 use FRD\Product;
 use FRD\ProductImage;
+use FRD\Tag;
 use Illuminate\Http\Request;
 use FRD\Http\Requests;
 use FRD\Http\Requests\ProductRequest;
@@ -14,16 +15,18 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminProductsController extends Controller
 {
-    private $products;
+    private $productModel;
+    private $tagModel;
 
-    public function __construct(Product $product)
+    public function __construct(Product $product, Tag $tag)
     {
-        $this->products = $product;
+        $this->productModel = $product;
+        $this->tagModel = $tag;
     }
 
     public function index()
     {
-        $products = $this->products->paginate(5);
+        $products = $this->productModel->paginate(5);
 
         return view('admin.products.index', compact('products'));
     }
@@ -38,24 +41,30 @@ class AdminProductsController extends Controller
     public function store(ProductRequest $request)
     {
         $input = $request->all();
-
-        $product = $this->products->fill($input);
+        $product = $this->productModel->fill($input);
         $product->save();
+
+        $tags = $this->tagModel->lists('name')->toArray();
+        $tags_input = explode(',',$request->get('tags'));
+
+        $productTags = $this->storeTags($tags, $tags_input);
+
+        $product->tags()->sync($productTags);
 
         return redirect()->route('products.index');
     }
 
     public function edit($id, Category $category)
     {
-        $product = $this->products->findOrNew($id);
+        $product = $this->productModel->findOrNew($id);
         $categories = $category->lists('name','id');
 
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
-    public function update(ProductRequest $request, $id)
+    public function update(ProductRequest $request, $id, Tag $tag = null)
     {
-        $product = $this->products->findOrNew($id);
+        $product = $this->productModel->findOrNew($id);
         $input = $request->all();
 
         if (!isset($input['featured'])) {
@@ -67,12 +76,18 @@ class AdminProductsController extends Controller
 
         $product->update($input, $id);
 
+        $tags = $tag->lists('name')->toArray();
+        $tags_input = explode(',',$request->get('tags'));
+
+        $productTags = $this->storeTags($tags, $tags_input);
+        $product->tags()->sync($productTags);
+
         return redirect()->route('products.index');
     }
 
     public function destroy($id)
     {
-        $product = $this->products->findOrNew($id);
+        $product = $this->productModel->findOrNew($id);
         $images = $product->images;
 
         if (!is_null($images)) {
@@ -83,21 +98,21 @@ class AdminProductsController extends Controller
             }
         }
 
-        $this->products->findOrNew($id)->delete();
+        $this->productModel->findOrNew($id)->delete();
 
         return redirect()->route('products.index');
     }
 
     public function images($id)
     {
-        $product = $this->products->findOrNew($id);
+        $product = $this->productModel->findOrNew($id);
 
         return view('admin.products.images', compact('product'));
     }
 
     public function createImage($id)
     {
-        $product = $this->products->findOrNew($id);
+        $product = $this->productModel->findOrNew($id);
 
         return view('admin.products.create_image', compact('product'));
     }
@@ -128,4 +143,17 @@ class AdminProductsController extends Controller
 
         return redirect()->route('products.images',['id'=>$product->id]);
     }
+
+    public function storeTags($tags, $tags_input)
+    {
+        foreach($tags_input as $t) {
+            if (!in_array($t, $tags)) {
+                $this->tagModel->create(['name'=>$t]);
+            }
+            $productTags[] = $this->tagModel->where('name',$t)->first()->id;
+        }
+
+        return $productTags;
+    }
+    
 }

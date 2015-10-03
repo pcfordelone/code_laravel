@@ -46,6 +46,12 @@
 
     <!-- Description Form Input -->
     <div class="form-group">
+        {!! Form::label('tags', 'Tags:') !!}
+        {!! Form::textarea('tags', $product->tag_list, ['class'=>'form-control']) !!}
+    </div>
+
+    <!-- Description Form Input -->
+    <div class="form-group">
         {!! Form::label('description', 'Descrição:') !!}
         {!! Form::textarea('description', $product->description, ['class'=>'form-control']) !!}
     </div>

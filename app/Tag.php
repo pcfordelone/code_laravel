@@ -12,4 +12,11 @@ class Tag extends Model
     {
         return $this->belongsToMany('FRD\Product');
     }
+
+    public function getTagListAttribute()
+    {
+        $tags = $this->tags->lists('name');
+
+        return $tags;
+    }
 }
