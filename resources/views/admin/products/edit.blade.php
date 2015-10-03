@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 
 @section('content')
     <h1>Editar Produto: {{ $product->name }}</h1>

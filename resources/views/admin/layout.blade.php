@@ -10,9 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="Fordelone Solutions">
 
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/admin/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/admin/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/admin/css/style.css" />
 
     <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -32,7 +32,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="#">
-                            <img class="logotipo" src="/images/logotipo.png" alt="Fordelone" />
+                            <img class="logotipo" src="/admin/images/logotipo.png" alt="Fordelone" />
                         </a>
                     </div>
 
@@ -82,10 +82,10 @@
     </div>
 </section>
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/scripts.js"></script>
-<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/admin/js/jquery.min.js"></script>
+<script src="/admin/js/bootstrap.min.js"></script>
+<script src="/admin/js/scripts.js"></script>
+<script src="/admin/js/jquery.dataTables.min.js"></script>
 
 </body>
 </html>

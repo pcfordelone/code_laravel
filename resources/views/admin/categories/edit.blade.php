@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 
 @section('content')
     <h1>Editar Categoria: {{ $category->name }}</h1>

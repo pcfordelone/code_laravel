@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
+
 /**
  * Admin Group Route
  */
