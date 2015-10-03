@@ -16,7 +16,7 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 @if (count($featured->images))
-                                    <img src="" alt="" alt="" width="200"/>
+                                    <img src="{{ url('uploads/'.$featured->images->last()->id.'.'.$featured->images->last()->extension) }}" alt="" alt="" width="200"/>
                                 @else
                                     <img src="images/no-img.jpg" alt="" width="200"/>
                                 @endif
