@@ -13,6 +13,7 @@
 
 Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
 Route::get('/category/{id}', ['as' => 'category', 'uses' => 'StoreController@category']);
+Route::get('/product/{id}', ['as' => 'product', 'uses' => 'StoreController@product']);
 
 /**
  * Admin Group Route

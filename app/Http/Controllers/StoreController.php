@@ -32,8 +32,16 @@ class StoreController extends Controller
     {
         $categories = $this->categoryModel->all();
         $category = $this->categoryModel->find($id);
-        $products = $this->productModel->where('category_id',$id)->get();
+        $products = $this->productModel->ofCategory($id)->get();
 
         return view('store.category', compact('categories','category','products'));
+    }
+
+    public function product($id)
+    {
+        $categories = $this->categoryModel->all();
+        $product = $this->productModel->find($id);
+
+        return view ('store.product', compact('categories', 'product'));
     }
 }
