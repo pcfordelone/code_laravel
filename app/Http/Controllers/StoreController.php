@@ -10,13 +10,30 @@ use FRD\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
+    private $productModel;
+    private $categoryModel;
 
-    public function index(Category $category, Product $product)
+    public function __construct(Product $product, Category $category)
     {
-        $categories = $category->all();
-        $featuredProducts = $product->featured()->take(6)->get();
-        $recommendedProducts = $product->recommend()->take(6)->get();
+        $this->productModel = $product;
+        $this->categoryModel = $category;
+    }
+
+    public function index()
+    {
+        $categories = $this->categoryModel->all();
+        $featuredProducts = $this->productModel->featured()->take(6)->get();
+        $recommendedProducts = $this->productModel->recommend()->take(6)->get();
 
         return view('store.index', compact('categories', 'featuredProducts', 'recommendedProducts'));
+    }
+
+    public function category($id)
+    {
+        $categories = $this->categoryModel->all();
+        $category = $this->categoryModel->find($id);
+        $products = $this->productModel->where('category_id',$id)->get();
+
+        return view('store.category', compact('categories','category','products'));
     }
 }
