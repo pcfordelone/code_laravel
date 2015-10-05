@@ -44,10 +44,9 @@ class AdminProductsController extends Controller
         $product = $this->productModel->fill($input);
         $product->save();
 
-        $tags = $this->tagModel->lists('name')->toArray();
-        $tags_input = explode(',',$request->get('tags'));
+        $tags_input = array_map('trim', explode(',', $request->get('tags')));
 
-        $productTags = $this->storeTags($tags, $tags_input);
+        $productTags = $this->prepareTags($tags_input);
 
         $product->tags()->sync($productTags);
 
@@ -76,10 +75,9 @@ class AdminProductsController extends Controller
 
         $product->update($input, $id);
 
-        $tags = $tag->lists('name')->toArray();
-        $tags_input = explode(',',$request->get('tags'));
+        $tags_input = array_map('trim', explode(',', $request->get('tags')));
 
-        $productTags = $this->storeTags($tags, $tags_input);
+        $productTags = $this->prepareTags($tags_input);
         $product->tags()->sync($productTags);
 
         return redirect()->route('products.index');
@@ -144,12 +142,10 @@ class AdminProductsController extends Controller
         return redirect()->route('products.images',['id'=>$product->id]);
     }
 
-    public function storeTags($tags, $tags_input)
+    public function prepareTags($tags_input)
     {
         foreach($tags_input as $t) {
-            if (!in_array($t, $tags)) {
-                $this->tagModel->create(['name'=>$t]);
-            }
+            $this->tagModel->firstOrCreate(['name'=>$t]);
             $productTags[] = $this->tagModel->where('name',$t)->first()->id;
         }
 

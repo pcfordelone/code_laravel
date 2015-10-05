@@ -19,4 +19,9 @@ class Tag extends Model
 
         return $tags;
     }
+
+    public function getProductListAttribute()
+    {
+        return $this->products;
+    }
 }

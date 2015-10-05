@@ -51,7 +51,12 @@
                             </a>
                     </span>
 
-                    
+                    <h2>Tags</h2>
+                    @foreach($product->tags as $tag)
+                        <a href="{{ route('tag',['id'=>$tag->id ]) }}">
+                            <button class="btn btn-default">{{ $tag->name }}</button>
+                        </a>
+                    @endforeach
 
                 </div>
                 <!--/product-information-->

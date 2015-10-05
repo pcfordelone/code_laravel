@@ -44,7 +44,7 @@
         <div class="clearfix"></div>
     </div>
 
-    <!-- Description Form Input -->
+    <!-- Tags Form Input -->
     <div class="form-group">
         {!! Form::label('tags', 'Tags:') !!}
         {!! Form::textarea('tags', $product->tag_list, ['class'=>'form-control']) !!}

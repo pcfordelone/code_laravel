@@ -4,6 +4,7 @@ namespace FRD\Http\Controllers;
 
 use FRD\Category;
 use FRD\Product;
+use FRD\Tag;
 use Illuminate\Http\Request;
 use FRD\Http\Requests;
 use FRD\Http\Controllers\Controller;
@@ -43,5 +44,14 @@ class StoreController extends Controller
         $product = $this->productModel->find($id);
 
         return view ('store.product', compact('categories', 'product'));
+    }
+
+    public function tag($id, Tag $tag)
+    {
+        $categories = $this->categoryModel->all();
+        $tag = $tag->findOrNew($id);
+        $products = $tag->product_list;
+
+        return view('store.tag', compact('categories','tag','products'));
     }
 }
