@@ -145,8 +145,8 @@ class AdminProductsController extends Controller
     public function prepareTags($tags_input)
     {
         foreach($tags_input as $t) {
-            $this->tagModel->firstOrCreate(['name'=>$t]);
-            $productTags[] = $this->tagModel->where('name',$t)->first()->id;
+            $tag = $this->tagModel->firstOrCreate(['name'=>$t]);
+            $productTags[] = $tag->id;
         }
 
         return $productTags;
