@@ -4,7 +4,7 @@
             <div class="single-products">
                 <div class="productinfo text-center">
                     @if (count($product->images))
-                        <img src="{{ url('uploads/'.$product->images->last()->id.'.'.$product->images->last()->extension) }}" alt="" alt="" width="200"/>
+                        <img src="{{ url('uploads/'.$product->images->last()->id.'.'.$product->images->last()->extension) }}" alt="" width="200"/>
                     @else
                         <img src="/images/no-img.jpg" alt="" width="200"/>
                     @endif
@@ -14,7 +14,7 @@
                         <i class="fa fa-crosshairs"></i>Mais detalhes
                     </a>
 
-                    <a href="#" class="btn btn-default add-to-cart">
+                    <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="btn btn-default add-to-cart">
                         <i class="fa fa-shopping-cart"></i>Adicionar no carrinho
                     </a>
                 </div>
@@ -26,7 +26,7 @@
                             <i class="fa fa-crosshairs"></i>Mais detalhes
                         </a>
 
-                        <a href="#" class="btn btn-default add-to-cart">
+                        <a href="{{ route('cart.add'), ['id' => $product->id] }}" class="btn btn-default add-to-cart">
                             <i class="fa fa-shopping-cart"></i>Adicionar no carrinho
                         </a>
                     </div>

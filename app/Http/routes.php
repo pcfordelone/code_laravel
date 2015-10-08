@@ -15,6 +15,8 @@ Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
 Route::get('/category/{id}', ['as' => 'category', 'uses' => 'StoreController@category']);
 Route::get('/product/{id}', ['as' => 'product', 'uses' => 'StoreController@product']);
 Route::get('/tag/{id}', ['as' => 'tag', 'uses' => 'StoreController@tag']);
+Route::get('/cart', ['as' => 'cart', 'uses' => 'CartController@index']);
+Route::get('/cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
 
 /**
  * Admin Group Route
@@ -55,3 +57,8 @@ Route::group(['prefix' => 'admin'], function() {
     });
 
 });
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);

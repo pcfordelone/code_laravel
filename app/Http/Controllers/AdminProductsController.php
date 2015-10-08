@@ -44,10 +44,7 @@ class AdminProductsController extends Controller
         $product = $this->productModel->fill($input);
         $product->save();
 
-        $tags_input = array_map('trim', explode(',', $request->get('tags')));
-
-        $productTags = $this->prepareTags($tags_input);
-
+        $productTags = $this->prepareTags($request->get('tags'));
         $product->tags()->sync($productTags);
 
         return redirect()->route('products.index');
@@ -75,9 +72,7 @@ class AdminProductsController extends Controller
 
         $product->update($input, $id);
 
-        $tags_input = array_map('trim', explode(',', $request->get('tags')));
-
-        $productTags = $this->prepareTags($tags_input);
+        $productTags = $this->prepareTags($request->get('tags'));
         $product->tags()->sync($productTags);
 
         return redirect()->route('products.index');
@@ -144,7 +139,9 @@ class AdminProductsController extends Controller
 
     public function prepareTags($tags_input)
     {
-        foreach($tags_input as $t) {
+        $tags = array_filter(array_map('trim', explode(',', $tags_input)));
+
+        foreach($tags as $t) {
             $tag = $this->tagModel->firstOrCreate(['name'=>$t]);
             $productTags[] = $tag->id;
         }
