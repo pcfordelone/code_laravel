@@ -3,7 +3,7 @@
 namespace FRD\Http\Controllers\Auth;
 
 use FRD\User;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use FRD\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;

@@ -5,10 +5,6 @@ namespace FRD;
 
 class Cart
 {
-    // add item
-    // remove item
-    // pegar itens
-    // total valor carrinho
 
     private $items;
 
@@ -20,12 +16,19 @@ class Cart
     public function add($id, $name, $price)
     {
         $this->items += [
-            'id' => [
+            $id => [
                 'qtd' => isset($this->items[$id]['qtd']) ? $this->items[$id]['qtd']++ : 1,
                 'price' => $price,
                 'name' => $name
             ]
         ];
+
+        return $this->items;
+    }
+
+    public function updateQtd($id, $qtd)
+    {
+        $qtd < 1 ? $this->remove($id) : $this->items[$id]['qtd'] = $qtd;
 
         return $this->items;
     }
@@ -49,6 +52,5 @@ class Cart
 
         return $total;
     }
-
 
 }

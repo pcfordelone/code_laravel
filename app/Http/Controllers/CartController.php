@@ -34,20 +34,49 @@ class CartController extends Controller
 
     public function add($id)
     {
+        $cart = $this->getCart();
+
+        $product = Product::find($id);
+        $cart->add($id, $product->name, $product->price);
+
+        Session::set('cart', $cart);
+
+        return redirect()->route('cart');
+    }
+
+    public function destroy($id)
+    {
+        $cart = $this->getCart();
+
+        $cart->remove($id);
+
+        Session::set('cart', $cart);
+
+        return redirect()->route('cart');
+    }
+
+    public function update($id, Request $request)
+    {
+        $cart = $this->getCart();
+        $qtd = $request->get('qtd');
+
+        $cart->updateQtd($id, $qtd);
+
+        Session::set('cart', $cart);
+
+        return redirect()->route('cart');
+    }
+
+    /**
+     * @return Cart
+     */
+    public function getCart()
+    {
         if (Session::has('cart')) {
             $cart = Session::get('cart');
         } else {
             $cart = $this->cart;
         }
-
-        $product = $this->product->findOrNew($id);
-        echo $product->name; die;
-
-
-        //$cart->add($id, $product->name, $product->price);
-
-        Session::set('cart', $cart);
-
-        return redirect()->route('cart');
+        return $cart;
     }
 }

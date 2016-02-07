@@ -4,6 +4,7 @@ use \Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use FRD\User;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserTableSeeder extends Seeder
@@ -13,6 +14,12 @@ class UserTableSeeder extends Seeder
         DB::table('users')->truncate();
 
         $faker = Faker::create();
+
+        User::create([
+            'name' => 'PC',
+            'email' => 'pc@fordelone.com.br',
+            'password' => Hash::make(123456),
+        ]);
 
         foreach (range(1, 5) as $i) {
             User::create([
