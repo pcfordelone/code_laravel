@@ -21,6 +21,8 @@ Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']
 Route::post('cart/update/{id}', ['as' => 'cart.update', 'uses' => 'CartController@update']);
 Route::get('cart/destroy/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
 
+Route::get('checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+
 /**
  * Admin Group Route
  */
@@ -63,5 +65,6 @@ Route::group(['prefix' => 'admin'], function() {
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController'
+    'password' => 'Auth\PasswordController',
+    'exemplo'  => 'TestController'
 ]);

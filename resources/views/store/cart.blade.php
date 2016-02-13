@@ -45,6 +45,7 @@
                             </td>
                             <td>
                                 {!! Form::submit('Atualizar Qtd.', ['class'=>'btn btn-default btn-sm']) !!}
+                                {!! Form::close() !!}
 
                                 <a href="{{ route('cart.destroy', ['id' => $k]) }}" class="cart_quantity_delete">
                                     <button class="btn btn-danger btn-sm">
@@ -53,7 +54,7 @@
                                 </a>
                             </td>
                         </tr>
-                        {!! Form::close() !!}
+
                     @empty
                         <tr>
                             <td colspan="6">
