@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'auth' => \FRD\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \FRD\Http\Middleware\RedirectIfAuthenticated::class,
+        'auth.admin' => \FRD\Http\Middleware\AuthAdmin::class,
     ];
 }

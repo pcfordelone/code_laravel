@@ -16,9 +16,16 @@ class UserTableSeeder extends Seeder
         $faker = Faker::create();
 
         User::create([
-            'name' => 'PC',
-            'email' => 'pc@fordelone.com.br',
-            'password' => Hash::make(123456),
+            'name'      => 'PC',
+            'email'     => 'pc@fordelone.com.br',
+            'password'  => Hash::make(123456),
+            'is_admin'  => 1
+        ]);
+
+        User::create([
+            'name'      => 'Gui',
+            'email'     => 'gui@fordelone.com.br',
+            'password'  => Hash::make(123),
         ]);
 
         foreach (range(1, 5) as $i) {

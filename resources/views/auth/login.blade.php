@@ -18,6 +18,12 @@
 						</div>
 					@endif
 
+					@if (session()->has('msg'))
+						<div class="alert alert-danger">
+							{{ session()->get('msg') }}
+						</div>
+					@endif
+
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -50,6 +56,7 @@
 								<button type="submit" class="btn btn-primary">Login</button>
 
 								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
+								<a class="btn btn-link" href="{{ url('/auth/register') }}">Register</a>
 							</div>
 						</div>
 					</form>

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
+Route::get('/home', ['as' => 'home', 'uses' => 'StoreController@index']);
 Route::get('category/{id}', ['as' => 'category', 'uses' => 'StoreController@category']);
 Route::get('product/{id}', ['as' => 'product', 'uses' => 'StoreController@product']);
 Route::get('tag/{id}', ['as' => 'tag', 'uses' => 'StoreController@tag']);
@@ -21,12 +22,15 @@ Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']
 Route::post('cart/update/{id}', ['as' => 'cart.update', 'uses' => 'CartController@update']);
 Route::get('cart/destroy/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
 
-Route::get('checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+
+Route::group(['prefix' => 'checkout', 'middleware' => 'auth'], function() {
+    Route::get('placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+});
 
 /**
  * Admin Group Route
  */
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function() {
 
     Route::pattern('id', '[0-9]+');
 

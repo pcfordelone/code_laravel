@@ -57,11 +57,13 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<strong class="caret"></strong></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    {{ Auth::user()->name }}<strong class="caret"></strong>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Profile</a></li>
                                     <li><a href="#">Alterar Senha</a></li>
-                                    <li><a href="#">Logout</a></li>
+                                    <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                                 </ul>
                             </li>
                         </ul>

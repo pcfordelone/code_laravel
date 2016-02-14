@@ -67,7 +67,7 @@
                         <td colspan="6">
                             <div class="pull-right" style="margin: 5px;">
                                 <span style="padding: 20px">TOTAL: {{ $cart->getTotal() }}</span>
-                                <a href="#">
+                                <a href="{{ route('checkout.place') }}">
                                     <button class="btn btn-success">
                                         Finalizar Compra
                                     </button>
