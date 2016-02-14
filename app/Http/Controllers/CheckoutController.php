@@ -36,14 +36,12 @@ class CheckoutController extends Controller
 
             }
 
-            dd($order);
+            $cart->clear();
+            return view('store.order', compact('order'));
         }
 
-    }
-
-    public function teste()
-    {
-
+        Session::flash('msg','Não foi possível fechar a compra pois o carrinho encontra-se vazio');
+        return redirect()->route('cart');
     }
 
 }

@@ -7,6 +7,12 @@
 
                 <h2 class="title text-center">Carrinho</h2>
 
+                @if (session()->has('msg'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('msg') }}
+                    </div>
+                @endif
+
                 <table class="table table-condensed">
                     <thead>
                     <tr class="cart_menu">
