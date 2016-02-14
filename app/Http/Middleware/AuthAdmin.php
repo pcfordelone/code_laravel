@@ -40,7 +40,7 @@ class AuthAdmin
 
         if (!$this->auth->check() or $this->auth->user()->is_admin <> 1) {
             $this->auth->logout();
-            Session::set('msg', 'Acesso restrito a administradores');
+            Session::flash('msg', 'Acesso restrito a administradores');
             return redirect('/auth/login');
         }
 
