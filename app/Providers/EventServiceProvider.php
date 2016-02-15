@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'FRD\Events\SomeEvent' => [
-            'FRD\Listeners\EventListener',
+        'FRD\Events\CheckoutEvent' => [
+            'FRD\Listeners\SendEmailCheckoutListener',
         ],
     ];
 
