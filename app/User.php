@@ -45,7 +45,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function userProfile()
     {
-        return $this->hasOne('FRD\Profile');
+        return $this->hasOne('FRD\UserProfile');
     }
 
 }
