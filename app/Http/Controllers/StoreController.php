@@ -5,19 +5,24 @@ namespace FRD\Http\Controllers;
 use FRD\Category;
 use FRD\Product;
 use FRD\Tag;
+use FRD\UserProfile;
 use Illuminate\Http\Request;
 use FRD\Http\Requests;
 use FRD\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class StoreController extends Controller
 {
     private $productModel;
     private $categoryModel;
+    private $profileModel;
 
-    public function __construct(Product $product, Category $category)
+    public function __construct(Product $product, Category $category, UserProfile $profile)
     {
         $this->productModel = $product;
         $this->categoryModel = $category;
+        $this->profileModel = $profile;
     }
 
     public function index()
@@ -53,5 +58,28 @@ class StoreController extends Controller
         $products = $tag->product_list;
 
         return view('store.tag', compact('categories','tag','products'));
+    }
+
+    public function userProfile()
+    {
+        return view('auth.user_profile');
+    }
+
+    public function userProfileStore(Request $request, $id)
+    {
+
+        $inputs = $request->all();
+        $profile = $this->profileModel->fill($inputs);
+        $profile->user_id = $id;
+
+        $profile->save();
+
+        $cart = Session::get('cart');
+
+        if ($cart->getTotal() > 0) {
+            return redirect()->route('cart');
+        }
+
+        return redirect()->route('home');
     }
 }

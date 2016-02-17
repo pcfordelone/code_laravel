@@ -22,14 +22,13 @@ Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']
 Route::post('cart/update/{id}', ['as' => 'cart.update', 'uses' => 'CartController@update']);
 Route::get('cart/destroy/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
 
-Route::get('teste_evento', function() { event(new \FRD\Events\CheckoutEvent(
-    \FRD\User::find(1), \FRD\Order::find(3)
-)); });
-
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('checkout.placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
     Route::get('order', ['as' => 'order', 'uses' => 'StoreController@order']);
+    Route::get('profile/{id}', ['as' => 'user.profile.create', 'uses' => 'StoreController@userProfile']);
+    Route::post('profile/{id}', ['as' => 'user.profile.store', 'uses' => 'StoreController@userProfileStore']);
+    Route::get('teste', ['as' => 'teste', 'uses' => 'StoreController@teste']);
 });
 
 /**
@@ -70,6 +69,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function() {
         Route::get('{id}/image/destroy', ['as' => 'products.image.destroy', 'uses' => 'AdminProductsController@destroyImage']);
     });
 
+    Route::group(['prefix' => 'users'], function() {
+        Route::get('/', ['as' => 'users.index', 'uses' => 'AdminUsersController@index']);
+        Route::get('/orders/{id}', ['as' => 'users.orders.index', 'uses' => 'AdminUsersController@userOrders']);
+    });
+
+    Route::group(['prefix' => 'orders'], function() {
+        Route::get('/', ['as' => 'orders.index', 'uses' => 'AdminOrdersController@index']);
+        Route::get('/show/{id}', ['as' => 'orders.show', 'uses' => 'AdminOrdersController@show']);
+        Route::post('/show/{id}', ['as' => 'orders.update', 'uses' => 'AdminOrdersController@update']);
+        Route::get('/destroy/{id}', ['as' => 'orders.destroy', 'uses' => 'AdminOrdersController@destroy']);
+    });
 });
 
 Route::controllers([

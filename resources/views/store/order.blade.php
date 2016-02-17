@@ -12,7 +12,7 @@
                     <li><strong>ID do Pedido: </strong>{{ $order->id }}</li>
                     <li><strong>Total:</strong> R$ {{ $order->total }}</li>
                     <li><strong>Status: </strong>@if ($order->status == 0) Em andamento @else Finalizado @endif</li>
-                </ul>
+                </ul>`
             </div>
         </div>
     </section>

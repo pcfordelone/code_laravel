@@ -52,6 +52,9 @@
                                     <li><a href="{{ route('category.new') }}">Adicionar Nova Categoria</a></li>
                                 </ul>
                             </li>
+
+                            <li ><a href={{ route('orders.index') }}>Pedidos</a></li>
+
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
