@@ -28,7 +28,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('order', ['as' => 'order', 'uses' => 'StoreController@order']);
     Route::get('profile/{id}', ['as' => 'user.profile.create', 'uses' => 'StoreController@userProfile']);
     Route::post('profile/{id}', ['as' => 'user.profile.store', 'uses' => 'StoreController@userProfileStore']);
-    Route::get('teste', ['as' => 'teste', 'uses' => 'StoreController@teste']);
+    Route::get('orders', ['as' => 'orders', 'uses' => 'StoreController@orders']);
+    Route::get('orderdetail/{id}', ['as' => 'order.detail', 'uses' => 'StoreController@orderDetail']);
 });
 
 /**

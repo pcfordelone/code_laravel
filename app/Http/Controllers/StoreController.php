@@ -3,6 +3,7 @@
 namespace FRD\Http\Controllers;
 
 use FRD\Category;
+use FRD\Order;
 use FRD\Product;
 use FRD\Tag;
 use FRD\UserProfile;
@@ -81,5 +82,19 @@ class StoreController extends Controller
         }
 
         return redirect()->route('home');
+    }
+
+    public function orders()
+    {
+        $user = Auth::user();
+
+        return view('store.orders', compact('user', 'categories'));
+    }
+
+    public function orderDetail($id)
+    {
+        $order = Auth::user()->orders()->find($id);
+
+        return view('store.order-detail', compact('order'));
     }
 }
