@@ -6,7 +6,7 @@ use FRD\User;
 use Illuminate\Support\Facades\Validator;
 use FRD\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use FRD\Traits\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
