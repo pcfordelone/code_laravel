@@ -86,5 +86,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function() {
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
-    'exemplo'  => 'TestController'
 ]);
